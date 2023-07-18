@@ -15,7 +15,7 @@ function Slider(selector, config) {
     generateDots();
     updateActiveSlide(currentSlideIndex);
     addEventListeners();
-    console.log("Slider initialized");
+
     if (config.autoPlay) {
       autoPlay();
     }
@@ -139,7 +139,6 @@ function Slider(selector, config) {
   }
 
   function autoPlay() {
-    console.log("autoPlay");
     autoPlayInterval = setInterval(() => {
       slideToNext();
     }, config.autoPlayDuration);
