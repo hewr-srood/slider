@@ -4,15 +4,13 @@
 
 .slider {
   position: relative;
-  width: 100%;
   max-width: 800px;
-  padding: 0 5rem;
+  margin: 0 auto;
   overflow: hidden;
 }
 
 .slides-container {
   display: flex;
-  width: 100%;
 }
 
 .slide {
@@ -21,8 +19,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: opacity var(--duration) ease, transform var(--duration) ease;
   opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity var(--duration) ease, transform var(--duration) ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition-delay: 300ms; /* Add delay for fade-in effect */
 }
 
 .arrow {
@@ -31,11 +36,20 @@
   transform: translateY(-50%);
   width: fit-content;
   height: 50px;
-  color: #e4e4e4;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform var(--duration) ease;
+}
+
+.arrow svg {
+  transition: fill var(--duration) ease;
+}
+
+.arrow:hover svg {
+  fill: #919191;
+  transition-delay: 0ms; /* Reset transition delay on hover */
 }
 
 .arrow-left {
@@ -49,8 +63,7 @@
 .dots-container {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
-
+  margin: 10px 0;
   width: 100%;
   height: 10px;
 }
@@ -60,25 +73,27 @@
   height: 10px;
   border-radius: 50%;
   background-color: #cbcbcb;
+  outline: none;
   margin: 0 5px;
-  transition: all var(--duration) ease;
   cursor: pointer;
+  transition: background-color var(--duration) ease;
 }
 
 .dot.active {
   background-color: #666666;
+  animation: dotActive 1s ease;
 }
 
-.slide.forward {
-  transform: translateX(100%);
-}
-
-.slide.backward {
-  transform: translateX(-100%);
-}
-
-.slide.active {
-  opacity: 1;
+@keyframes dotActive {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* mobile */
