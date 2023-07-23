@@ -8,10 +8,11 @@ function Slider(selector, config) {
   let autoPlayInterval;
   let arrowLeft = null;
   let arrowRight = null;
+
   const dots = [];
 
   function init() {
-    cacheElements();
+    generateArrows();
     generateDots();
     updateActiveSlide(currentSlideIndex);
     addEventListeners();
@@ -21,7 +22,7 @@ function Slider(selector, config) {
     }
   }
 
-  function cacheElements() {
+  function generateArrows() {
     arrowLeft = createArrow(
       "arrow-left",
       `
@@ -120,13 +121,22 @@ function Slider(selector, config) {
     currentSlideIndex = index;
     slides.forEach((slide, i) => {
       const isCurrentSlide = i === index;
-      const isForward = i > index;
-      const isBackward = i < index;
+      const isNextSlide = i === (index + 1) % totalSlides;
+      const isPreviousSlide = i === (index - 1 + totalSlides) % totalSlides;
 
       slide.classList.toggle("active", isCurrentSlide);
-      slide.style.transform = `translateX(${-100 * index}%)`;
-      slide.classList.toggle("forward", isForward);
-      slide.classList.toggle("backward", isBackward);
+
+      if (isNextSlide) {
+        slide.style.transform = `translateX(${100 * (i + 1)}%)`;
+      }
+
+      if (isPreviousSlide) {
+        slide.style.transform = `translateX(${-100 * (i + 1)}%)`;
+      }
+
+      if (isCurrentSlide) {
+        slide.style.transform = `translateX(${-100 * i}%)`;
+      }
     });
 
     dots.forEach((dot, i) => {

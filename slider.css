@@ -20,14 +20,12 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transform: translateX(-100%);
   transition: opacity var(--duration) ease, transform var(--duration) ease;
 }
 
 .slide.active {
   opacity: 1;
-  transform: translateX(0%);
-  transition-delay: 300ms; /* Add delay for fade-in effect */
+  transition-delay: 300ms;
 }
 
 .arrow {
@@ -49,7 +47,6 @@
 
 .arrow:hover svg {
   fill: #919191;
-  transition-delay: 0ms; /* Reset transition delay on hover */
 }
 
 .arrow-left {
