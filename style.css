@@ -4,12 +4,10 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
-html {
-  width: 100%;
-  min-height: 100vh;
-}
+
 body {
   width: 100%;
+  min-height: 100vh;
   height: 100%;
   display: flex;
   gap: 5rem;
